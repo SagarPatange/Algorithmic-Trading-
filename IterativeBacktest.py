@@ -2,7 +2,7 @@
 from IterativeBase import *
 
 class IterativeBacktest(IterativeBase):
-    ''' Class for iterative (event-driven) backtesting of trading strategies.
+    ''' Class for iterative backtesting
     '''
 
     # helper method
@@ -31,8 +31,6 @@ class IterativeBacktest(IterativeBase):
         ''' 
         Backtests an SMA crossover strategy with SMA_S (short) and SMA_L (long).
         
-        Parameters
-        ----------
         SMA_S: int
             moving window in bars (e.g. days) for shorter SMA
         SMA_L: int
@@ -73,10 +71,8 @@ class IterativeBacktest(IterativeBase):
         ''' 
         Backtests a simple contrarian strategy.
         
-        Parameters
-        ----------
         window: int
-            time window (number of bars) to be considered for the strategy.
+            time window to be considered for the strategy.
         '''
         
         # nice printout
