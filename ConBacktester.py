@@ -5,9 +5,7 @@ import matplotlib.pyplot as plt
 plt.style.use("seaborn-v0_8")
 
 
-class ConBacktester():
-    ''' Class for the vectorized backtesting of simple contrarian trading strategies.
-    '''    
+class ConBacktester():  
     
     def __init__(self, symbol, start, end, tc):
         '''
@@ -33,8 +31,7 @@ class ConBacktester():
         return "ConBacktester(symbol = {}, start = {}, end = {})".format(self.symbol, self.start, self.end)
         
     def get_data(self):
-        ''' Imports the data from intraday_pairs.csv (source can be changed).
-        '''
+
         raw = pd.read_csv("intraday_pairs.csv", parse_dates = ["time"], index_col = "time")
         raw = raw[self.symbol].to_frame().dropna()
         raw = raw.loc[self.start:self.end].copy()
@@ -44,9 +41,6 @@ class ConBacktester():
         
     def test_strategy(self, window = 1):
         ''' Backtests the simple contrarian trading strategy.
-        
-        Parameters
-        ----------
         window: int
             time window (number of bars) to be considered for the strategy.
         '''
@@ -72,7 +66,7 @@ class ConBacktester():
         return round(perf, 6), round(outperf, 6)
     
     def plot_results(self):
-        ''' Plots the performance of the trading strategy and compares to "buy and hold".
+        ''' Plots the performance of the trading strategy
         '''
         if self.results is None:
             print("Run test_strategy() first.")
@@ -81,10 +75,8 @@ class ConBacktester():
             self.results[["creturns", "cstrategy"]].plot(title=title, figsize=(12, 8))
             
     def optimize_parameter(self, window_range):
-        ''' Finds the optimal strategy (global maximum) given the window parameter range.
-
-        Parameters
-        ----------
+        ''' Finds the optimal strategy given the window parameter range.
+        
         window_range: tuple
             tuples of the form (start, end, step size)
         '''
